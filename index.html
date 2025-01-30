@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url('https://media.discordapp.net/attachments/1203385455727611964/1334435438525546547/wallpaperflare.com_wallpaper.jpg?ex=679c8559&is=679b33d9&hm=50111702f52da2114feafbaf836a20d4894bddc66a219059c1b5f2b4f9a54942&=&format=webp&width=840&height=473') no-repeat center center fixed; 
+            background-size: cover;
+            direction: rtl;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 350px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.6); /* لون أسود شفاف أكثر */
+            border-radius: 12px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+            position: relative;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2); /* إطار أبيض شفاف */
+        }
+
+        h2 {
+            margin: 10px 0;
+            font-size: 22px;
+            background: linear-gradient(90deg, #FFD700, #ffcc00, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 2s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { background-position: 0%; }
+            100% { background-position: 200%; }
+        }
+
+        input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        button {
+            background: #ff9800;
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #e68900;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>تسجيل الدخول</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="اسم المستخدم" required>
+            <input type="password" id="password" placeholder="كلمة المرور" required>
+            <button type="submit">تسجيل الدخول</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // منع تحديث الصفحة
+
+            // السماح بأي اسم مستخدم وكلمة مرور
+            window.location.href = "application.html"; // نقل المستخدم إلى صفحة التقديم
+        });
+    </script>
+
+</body>
+</html>
