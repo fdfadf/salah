@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج التقديم | PMDesportes Clan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            direction: rtl;
+            background: url('https://media.discordapp.net/attachments/1203385455727611964/1334435438525546547/wallpaperflare.com_wallpaper.jpg?ex=679c8559&is=679b33d9&hm=50111702f52da2114feafbaf836a20d4894bddc66a219059c1b5f2b4f9a54942&=&format=webp&width=840&height=473') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            width: 350px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.6); /* لون أسود شفاف */
+            border-radius: 12px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.2); /* إطار أبيض شفاف */
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            font-size: 22px;
+            background: linear-gradient(90deg, #FFD700, #ffcc00, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 2s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { background-position: 0%; }
+            100% { background-position: 200%; }
+        }
+
+        input, textarea {
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        button {
+            background: #ff9800;
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #e68900;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>نموذج تقديم ببجي</h2>
+        <form id="submitForm">
+            <input type="text" id="name" placeholder="الاسم" required><br>
+            <input type="email" id="email" placeholder="البريد الإلكتروني" required><br>
+            <input type="text" id="pubgID" placeholder="ID ببجي" required><br>
+            <input type="number" id="pubgLevel" placeholder="مستوى الحساب (Level)" required><br>
+            <textarea id="message" placeholder="رسالتك" required></textarea><br>
+            <button type="submit">إرسال</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("submitForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // منع التحديث التلقائي للصفحة
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let pubgID = document.getElementById("pubgID").value;
+            let pubgLevel = document.getElementById("pubgLevel").value;
+            let message = document.getElementById("message").value;
+
+            let fullMessage = `📝 **طلب جديد:**\n👤 الاسم: ${name}\n📧 البريد: ${email}\n🎮 ID ببجي: ${pubgID}\n🏆 مستوى الحساب: ${pubgLevel}\n💬 الرسالة: ${message}`;
+
+            let discordWebhookURL = "https://discord.com/api/webhooks/1334437297869033543/w-caRUkdzrJylHX3DJae8DGlHvzZJHutJkDESDCVeFe98TKEAmGPHi2HqfT0gKajJ39c"; 
+            fetch(discordWebhookURL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ content: fullMessage })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("تم إرسال الطلب بنجاح إلى ديسكورد!");
+                    document.getElementById("submitForm").reset();
+                } else {
+                    alert("حدث خطأ أثناء الإرسال إلى ديسكورد!");
+                }
+            })
+            .catch(error => console.error("خطأ في ديسكورد:", error));
+        });
+    </script>
+
+</body>
+</html>
